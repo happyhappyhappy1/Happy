@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Website</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://img.freepik.com/premium-photo/simple-cartoon-style-beautiful-landscape-background-illustration_804845-178.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            z-index: 10;
+            position: relative;
+        }
+        h1[contenteditable="true"] {
+            padding: 5px;
+            margin: 10px 0;
+            min-width: 200px;
+            outline: none;
+        }
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .button i {
+            margin-right: 10px;
+        }
+        #movingLogo {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            z-index: 1;
+            object-fit: cover;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 contenteditable="true">Don't worry; be happy</h1>
+        <h1 contenteditable="true">CA: XXXXX</h1>
+        <a href="https://example.com" target="_blank" class="button">
+            <i class="fas fa-external-link-alt"></i>
+            Visit Example.com
+        </a>
+    </div>
+    <img id="movingLogo" src="https://i.imgur.com/zY4Fbig.png" alt="Moving Logo">
+
+    <script>
+        const logo = document.getElementById('movingLogo');
+        let x = 0;
+        let y = 0;
+        let xSpeed = 2;
+        let ySpeed = 2;
+
+        function moveLogo() {
+            const maxX = window.innerWidth - logo.width;
+            const maxY = window.innerHeight - logo.height;
+
+            x += xSpeed;
+            y += ySpeed;
+
+            if (x <= 0 || x >= maxX) xSpeed = -xSpeed;
+            if (y <= 0 || y >= maxY) ySpeed = -ySpeed;
+
+            logo.style.left = x + 'px';
+            logo.style.top = y + 'px';
+
+            requestAnimationFrame(moveLogo);
+        }
+
+        moveLogo();
+    </script>
+</body>
+</html>
